@@ -47,9 +47,17 @@ $(document).ready(function() {
 
     $.getJSON(baseUrl+query, function(data){
       console.log(data);
-      for(var i < 0; i < items.length; i++) {
-        
+
+      var resultHTML = '';
+
+      for(var i = 0; i < data.items.length; i++) {
+        resultHTML += '<li>'
+        resultHTML += '<a href="#"><p>'+data.items[i].name+'</a></p>'
+        resultHTML += '</li>'
       }
+
+      $('#results-container').html(resultHTML);
+
     });
 
   }//ends getResults 
