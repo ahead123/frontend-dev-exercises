@@ -2,6 +2,7 @@
     # Endpoint URL #
     
     https://api.github.com/legacy/repos/search/{query}
+    legacy search is deprecated according to github api - v3 is recommended
     
     Note: Github imposes a rate limit of 60 request per minute. Documentation can be found at http://developer.github.com/v3/.
     
@@ -35,3 +36,16 @@
       }
     }
 */
+
+var query;
+$(document).ready(function() {
+
+  var getResults = function() {
+    
+  }//ends getResults 
+
+});//ends document.ready
+
+
+
+
