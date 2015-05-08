@@ -38,11 +38,23 @@
 */
 
 var query;
+var baseUrl = 'https://api.github.com/search/repositories?q=';
 $(document).ready(function() {
 
   var getResults = function() {
-    
+
+    query = $('#search').val();
+
+    $.getJSON(baseUrl+query, function(data){
+      console.log(data);
+      for(var i < 0; i < items.length; i++) {
+        
+      }
+    });
+
   }//ends getResults 
+
+  $('#searchButton').click(getResults);
 
 });//ends document.ready
 
