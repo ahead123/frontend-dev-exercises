@@ -49,20 +49,40 @@ $(document).ready(function() {
       console.log(data);
 
       var resultHTML = '';
+      var resultOverlay = '';
+      var language;
+      var followers;
+      var repo_url;
+      var description;
 
       for(var i = 0; i < data.items.length; i++) {
-        resultHTML += '<li>'
-        resultHTML += 'Repository: <a href="#">'+data.items[i].name+'</a>' + ' ' + 'Username: <a href="#">'+data.items[i].owner.login+'</a>'
+        language = data.items[i].language;
+        repo_url = data.items[i].git_url;
+        description = data.items[i].description;
+        resultHTML += '<li class="listItem">'
+        resultHTML += 'Repository: <a class="overlayOpen" href="#">'+data.items[i].name+'</a>' + ' ' + 'Username: '+data.items[i].owner.login
+        resultHTML += '<p class="info">'+language+ ' '+repo_url+' '+description+'</p>'
         resultHTML += '</li>'
       }
+      
 
       $('#results-container').html(resultHTML);
+      
+      // clicking an a tag will fire a function that opens an overlay
+      // overlay should show the repos language, followers, url, and description
+      
 
     });
 
   }//ends getResults 
 
   $('#searchButton').click(getResults);
+
+   $('body').on('click','a', function(e) {
+        e.preventDefault();
+        $(this).parent('li').find('p.info').slideToggle('fast');
+      });
+
 
 });//ends document.ready
 

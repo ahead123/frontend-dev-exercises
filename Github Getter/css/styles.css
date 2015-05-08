@@ -15,6 +15,10 @@ body, html {
 
 }
 
-li {
+.info {
+	display: none;
+}
+
+.listItem {
 	list-style: none;
 }
