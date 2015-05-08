@@ -12,5 +12,9 @@ body, html {
 }
 
 #searchButton {
-	
+
+}
+
+li {
+	list-style: none;
 }

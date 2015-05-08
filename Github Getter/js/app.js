@@ -52,7 +52,7 @@ $(document).ready(function() {
 
       for(var i = 0; i < data.items.length; i++) {
         resultHTML += '<li>'
-        resultHTML += '<a href="#"><p>'+data.items[i].name+'</a></p>'
+        resultHTML += 'Repository: <a href="#">'+data.items[i].name+'</a>' + ' ' + 'Username: <a href="#">'+data.items[i].owner.login+'</a>'
         resultHTML += '</li>'
       }
 
