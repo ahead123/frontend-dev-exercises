@@ -39,14 +39,17 @@
 
 var query;
 var baseUrl = 'https://api.github.com/search/repositories?q=';
+var dataCache = {};
 $(document).ready(function() {
 
   var getResults = function() {
 
     query = $('#search').val();
 
-    $.getJSON(baseUrl+query, function(data){
-      console.log(data);
+    $.ajax({
+      url: baseUrl+query,
+      cache: true
+    }).done(function(data) {
 
       var resultHTML = '';
       var resultOverlay = '';
@@ -61,16 +64,11 @@ $(document).ready(function() {
         description = data.items[i].description;
         resultHTML += '<li class="listItem">'
         resultHTML += 'Repository: <a class="overlayOpen" href="#">'+data.items[i].name+'</a>' + ' ' + 'Username: '+data.items[i].owner.login
-        resultHTML += '<p class="info">'+language+ ' '+repo_url+' '+description+'</p>'
+        resultHTML += '<p class="info"> <strong>Language:</strong> '+language+ ' <strong>URL:</strong> '+repo_url+' <strong>Description:</strong> '+description+'</p>'
         resultHTML += '</li>'
       }
       
-
       $('#results-container').html(resultHTML);
-      
-      // clicking an a tag will fire a function that opens an overlay
-      // overlay should show the repos language, followers, url, and description
-      
 
     });
 
@@ -79,9 +77,9 @@ $(document).ready(function() {
   $('#searchButton').click(getResults);
 
    $('body').on('click','a', function(e) {
-        e.preventDefault();
-        $(this).parent('li').find('p.info').slideToggle('fast');
-      });
+      e.preventDefault();
+      $(this).parent('li').find('p.info').slideToggle('fast');
+   });
 
 
 });//ends document.ready
