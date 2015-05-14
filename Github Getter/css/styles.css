@@ -2,17 +2,55 @@
 body, html {
 	margin: 0;
 	padding: 0;
+	background: #f9f9f9;
+	width: 100%;
 }
 
 #header {
 	text-align: center;
 	width: 100%;
-	background: #ccc;
+	background: #34495e;
 	padding: 30px 0;
 }
 
-#searchButton {
+#header > h1 {
+	font-family: Tahoma, Verdana, Segoe, sans-serif;
+	font-size: 2.4em;
+	font-weight: 500;
+	color: #fff;
+}
 
+.container {
+	width: 90%;
+	margin: 0 auto;
+}
+
+input#search {
+	margin-bottom: 10px;
+	padding: 8px 45px;
+	text-align: center;
+	text-transform: uppercase;
+	border: solid 1px #f1c40f;
+	box-shadow: 0 0 5px 1px #f1c40f;
+}
+
+input#search:focus {
+	outline: none;
+}
+
+#searchButton {
+	background: #fff;
+	border: 1px solid #fff;
+	color: #34495e;
+	padding: 10px 40px;
+	margin-top: 10px;
+	text-transform: uppercase;
+}
+
+#searchButton:hover {
+	background: #fff;
+	border: 1px solid #fff;
+	color: #333;
 }
 
 .info {
@@ -21,4 +59,28 @@ body, html {
 
 .listItem {
 	list-style: none;
+	padding: 40px;
+	margin-top: 20px;
+	background: #fff;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+	text-align: center;
+}
+
+li.listItem:last-of-type {
+	margin-bottom: 20px;
+}
+
+li > span, li > span > a {
+	font-size: 34px;
+}
+
+.resultLinks {
+	text-decoration: none;
+	font-weight: bold;
+	color: #f1c40f;
+}
+
+p#resultCount {
+	color: #c0392b;
+	font-weight: bold;
 }

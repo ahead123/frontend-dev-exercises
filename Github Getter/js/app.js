@@ -52,19 +52,23 @@ $(document).ready(function() {
       var followers;
       var repo_url;
       var description;
+      var resultCounter;
 
       for(var i = 0; i < data.items.length; i++) {
         language = data.items[i].language;
-        repo_url = data.items[i].git_url;
+        repo_url = data.items[i].html_url;
         description = data.items[i].description;
         followers = data.items[i].watchers;
+        resultCounter = data.items.length;
         resultHTML += '<li class="listItem">'
-        resultHTML += 'Repository: <a href="#">'+data.items[i].name+'</a>' + ' ' + 'Username: '+data.items[i].owner.login
-        resultHTML += '<p class="info"> <strong>Language:</strong> '+language+ ' <strong>URL:</strong> '+repo_url+' <strong>Description:</strong> '+description+' <strong>Followers:</strong> '+followers+'</p>'
+        resultHTML += '<span>Repository: <a href="#" class="resultLinks">'+data.items[i].name+'</a></span>' + ' ' + '<span>Username: '+data.items[i].owner.login+'</span>'
+        resultHTML += '<p class="info"> <strong>Language:</strong> '+language+ ' <strong>URL:</strong> <a href="'+repo_url+'" class="resultLinks">'+repo_url+' </a>'+' '+'<strong>Description:</strong> '+description+' <strong>Followers:</strong> '+followers+'</p>'
         resultHTML += '</li>'
       }
   
-      $('#results-container').html(resultHTML);
+      $('#results-container').append(resultHTML);
+      $('#resultCount').html('('+resultCounter+') Repos found for '+'"'+query+'"');
+      $('#search').val(' ');
     }
 
     // store search term 
@@ -91,8 +95,15 @@ $(document).ready(function() {
 
   $('#searchButton').click(getResults);
 
+  // binds enter keypress event to getResults function
+  $('input#search').keypress(function (e) {
+    if (e.which == 13) {
+      getResults();
+    }
+  });
+
    // show and hide the langauge, followers, url, and description for each result
-   $('body').on('click','a', function(e) {
+   $('body').on('click','span', function(e) {
       e.preventDefault();
       $(this).parent('li').find('p.info').slideToggle('fast');
    });
