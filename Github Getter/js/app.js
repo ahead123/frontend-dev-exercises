@@ -60,6 +60,7 @@ $(document).ready(function() {
       var repo_url;
       var description;
       var resultCounter;
+      var avatar;
 
       for(var i = 0; i < data.items.length; i++) {
         language = data.items[i].language;
@@ -67,8 +68,9 @@ $(document).ready(function() {
         description = data.items[i].description;
         followers = data.items[i].watchers;
         resultCounter = data.items.length;
+        avatar = data.items[i].owner.avatar_url;
         resultHTML += '<li class="listItem">'
-        resultHTML += '<span>Repository: <a href="#" class="resultLinks">'+data.items[i].name+'</a></span>' + ' ' + '<span>Username: '+data.items[i].owner.login+'</span>'
+        resultHTML += '<span>Repository: <a href="#" class="resultLinks">'+data.items[i].name+'</a></span><br/>' + ' ' + '<span>Username: '+data.items[i].owner.login+'</span>'+'<img class="userAvatar" src="'+avatar+'">'
         resultHTML += '<p class="info"> <strong>Language:</strong> <span class="languageText">'+language+'</span> <strong>URL:</strong> <a href="'+repo_url+'" class="resultLinks">'+repo_url+' </a>'+' '+'<strong>Description:</strong> <span class="redText">'+description+'</span> <strong>Followers:</strong> <span class="twitterBlue">'+followers+'</span></p>'
         resultHTML += '</li>'
       }

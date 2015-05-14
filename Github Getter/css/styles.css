@@ -135,7 +135,14 @@ li.listItem:last-of-type {
 
 .resultLinks:hover {
 	border-bottom: 2px solid #f1c40f;
-	padding-bottom: 5px;
+}
+
+.userAvatar {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	left: 0;
+	bottom: 0;
 }
 
 p#resultCount {
@@ -161,14 +168,14 @@ p#resultCount {
 	}
 }
 
-@media all and (min-width: 481px) and (max-width: 1150px) {
+@media all and (min-width: 551px) and (max-width: 1150px) {
 	.listItem {
 		width: 87%;
 		float: none;
 	}
 }
 
-@media all and (max-width: 480px) {
+@media all and (max-width: 550px) {
 	.listItem {
 		width: 75%;
 	}
