@@ -47,6 +47,8 @@ $(document).ready(function() {
 
     // used to loop through returned JSON data and display in the HTML view
     var render = function(data) {
+
+      $('#results-container').html(' ');
       var resultHTML = '';
       var language;
       var followers;
@@ -67,7 +69,7 @@ $(document).ready(function() {
       }
   
       $('#results-container').append(resultHTML);
-      $('#resultCount').html('('+resultCounter+') Repos found for '+'"'+query+'"');
+      $('#resultCount').html('('+resultCounter+') Repos found for '+'"'+query+'"'+'<br /><p>Click on each repo name for more info!</p>');
       $('#search').val(' ');
     }
 

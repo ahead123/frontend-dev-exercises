@@ -70,10 +70,6 @@ li.listItem:last-of-type {
 	margin-bottom: 20px;
 }
 
-li > span, li > span > a {
-	font-size: 34px;
-}
-
 .resultLinks {
 	text-decoration: none;
 	font-weight: bold;
