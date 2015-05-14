@@ -78,7 +78,6 @@ $(document).ready(function() {
 
     // lookup query in cache. if present call render function and don't make the ajax call
     if(query in dataCache) {
-      console.log('hit cache', query, dataCache[query]);
       render(dataCache[query]);
       return false;
     } 
@@ -89,7 +88,6 @@ $(document).ready(function() {
     // call a callback - add returned data to dataCache object - call render function
     }).done(function(data) {
       dataCache[query] = data;
-      console.log(data);
       render(data);
     });
 
