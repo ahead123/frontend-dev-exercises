@@ -46,7 +46,7 @@ $(document).ready(function() {
   var getResults = function() {
 
     // used to loop through returned JSON data and display in the HTML view
-    var render = function(data) {
+    var render = function(datas) {
 
       $('#results-container').html(' ');
       var resultHTML = '';
