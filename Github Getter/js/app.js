@@ -69,12 +69,12 @@ $(document).ready(function() {
         resultCounter = data.items.length;
         resultHTML += '<li class="listItem">'
         resultHTML += '<span>Repository: <a href="#" class="resultLinks">'+data.items[i].name+'</a></span>' + ' ' + '<span>Username: '+data.items[i].owner.login+'</span>'
-        resultHTML += '<p class="info"> <strong>Language:</strong> '+language+ ' <strong>URL:</strong> <a href="'+repo_url+'" class="resultLinks">'+repo_url+' </a>'+' '+'<strong>Description:</strong> '+description+' <strong>Followers:</strong> '+followers+'</p>'
+        resultHTML += '<p class="info"> <strong>Language:</strong> <span class="languageText">'+language+'</span> <strong>URL:</strong> <a href="'+repo_url+'" class="resultLinks">'+repo_url+' </a>'+' '+'<strong>Description:</strong> <span class="redText">'+description+'</span> <strong>Followers:</strong> <span class="twitterBlue">'+followers+'</span></p>'
         resultHTML += '</li>'
       }
   
       $('#results-container').append(resultHTML);
-      $('#resultCount').fadeIn('fast').html('('+resultCounter+') Repos found for '+'"'+query+'"'+'<br /><p>Click on each repo name for more info!</p>'+'<p>Scroll down to see the results!</p>');
+      $('#resultCount').fadeIn('fast').html('('+resultCounter+') Repos showing for keyword '+'"'+query.toUpperCase()+'"'+'<br /><p>Scroll down to see the results!</p>'+'<p>And click on each repo name for more info!</p>');
       $('#search').val(' ');
     }
 
