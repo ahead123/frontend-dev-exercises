@@ -46,11 +46,17 @@ $(document).ready(function() {
 
     query = $('#search').val();
 
+    if(query in dataCache) {
+      console.log('hit cache');
+      dataCache[query] = query;
+      return query;
+    } 
+
     $.ajax({
       url: baseUrl+query,
       cache: true
     }).done(function(data) {
-
+      dataCache[query] = query;
       var resultHTML = '';
       var resultOverlay = '';
       var language;
