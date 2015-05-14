@@ -105,9 +105,9 @@ $(document).ready(function() {
   });
 
    // show and hide the langauge, followers, url, and description for each result
-   $('body').on('click','li', function(e) {
+   $('body').on('click','span', function(e) {
       e.preventDefault();
-      $(this).find('p.info').slideToggle('fast');
+      $(this).parent('li').find('p.info').slideToggle('fast');
    });
 
 
