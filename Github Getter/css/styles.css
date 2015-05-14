@@ -66,6 +66,11 @@ input#search:focus {
 	text-align: center;
 }
 
+li.listItem:hover {
+	box-shadow: 0 5px 10px rgba(52, 73, 94, 0.8);
+	cursor: pointer;
+}
+
 li.listItem:last-of-type {
 	margin-bottom: 20px;
 }
