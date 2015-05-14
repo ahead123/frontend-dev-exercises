@@ -57,9 +57,10 @@ $(document).ready(function() {
         language = data.items[i].language;
         repo_url = data.items[i].git_url;
         description = data.items[i].description;
+        followers = data.items[i].watchers;
         resultHTML += '<li class="listItem">'
-        resultHTML += 'Repository: <a class="overlayOpen" href="#">'+data.items[i].name+'</a>' + ' ' + 'Username: '+data.items[i].owner.login
-        resultHTML += '<p class="info"> <strong>Language:</strong> '+language+ ' <strong>URL:</strong> '+repo_url+' <strong>Description:</strong> '+description+'</p>'
+        resultHTML += 'Repository: <a href="#">'+data.items[i].name+'</a>' + ' ' + 'Username: '+data.items[i].owner.login
+        resultHTML += '<p class="info"> <strong>Language:</strong> '+language+ ' <strong>URL:</strong> '+repo_url+' <strong>Description:</strong> '+description+' <strong>Followers:</strong> '+followers+'</p>'
         resultHTML += '</li>'
       }
   
