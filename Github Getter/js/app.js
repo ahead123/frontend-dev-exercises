@@ -40,25 +40,14 @@
 var query;
 var baseUrl = 'https://api.github.com/search/repositories?q=';
 var dataCache = {};
+
 $(document).ready(function() {
 
   var getResults = function() {
 
-    query = $('#search').val();
-
-    if(query in dataCache) {
-      console.log('hit cache');
-      dataCache[query] = query;
-      return query;
-    } 
-
-    $.ajax({
-      url: baseUrl+query,
-      cache: true
-    }).done(function(data) {
-      dataCache[query] = query;
+    // used to loop through returned JSON data and display in the HTML view
+    var render = function(data) {
       var resultHTML = '';
-      var resultOverlay = '';
       var language;
       var followers;
       var repo_url;
@@ -73,15 +62,35 @@ $(document).ready(function() {
         resultHTML += '<p class="info"> <strong>Language:</strong> '+language+ ' <strong>URL:</strong> '+repo_url+' <strong>Description:</strong> '+description+'</p>'
         resultHTML += '</li>'
       }
-      
+  
       $('#results-container').html(resultHTML);
+    }
 
+    // store search term 
+    query = $('#search').val();
+
+    // lookup query in cache. if present call render function and don't make the ajax call
+    if(query in dataCache) {
+      console.log('hit cache', query, dataCache[query]);
+      render(dataCache[query]);
+      return false;
+    } 
+
+    // make the ajax call and build the url 
+    $.ajax({
+      url: baseUrl+query
+    // call a callback - add returned data to dataCache object - call render function
+    }).done(function(data) {
+      dataCache[query] = data;
+      console.log(data);
+      render(data);
     });
 
   }//ends getResults 
 
   $('#searchButton').click(getResults);
 
+   // show and hide the langauge, followers, url, and description for each result
    $('body').on('click','a', function(e) {
       e.preventDefault();
       $(this).parent('li').find('p.info').slideToggle('fast');
