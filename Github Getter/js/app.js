@@ -43,6 +43,11 @@ var dataCache = {};
 
 $(document).ready(function() {
 
+  $('#brand').show().animate({'left':'-=150px'}, 1200);
+  $('#header > h1').fadeIn(2000);
+  $('#search').fadeIn('fast').animate({'marginTop': '40px'}, 1000);
+  $('#searchButton').fadeIn('fast').animate({'marginTop': '10px'}, 1200);
+
   var getResults = function() {
 
     // used to loop through returned JSON data and display in the HTML view
@@ -69,7 +74,7 @@ $(document).ready(function() {
       }
   
       $('#results-container').append(resultHTML);
-      $('#resultCount').html('('+resultCounter+') Repos found for '+'"'+query+'"'+'<br /><p>Click on each repo name for more info!</p>');
+      $('#resultCount').fadeIn('fast').html('('+resultCounter+') Repos found for '+'"'+query+'"'+'<br /><p>Click on each repo name for more info!</p>'+'<p>Scroll down to see the results!</p>');
       $('#search').val(' ');
     }
 
