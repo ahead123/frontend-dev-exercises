@@ -109,6 +109,10 @@ $(document).ready(function() {
     }
   });
 
+  $('input#search').on('focus',function() {
+    $('#resultCount').hide('fast');
+  });
+
    // show and hide the langauge, followers, url, and description for each result
    $('body').on('click','span', function(e) {
       e.preventDefault();
