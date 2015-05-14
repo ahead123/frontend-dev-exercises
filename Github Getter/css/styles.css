@@ -144,6 +144,12 @@ p#resultCount {
   display: none;
 }
 
+#closer {
+	text-decoration: none;
+	font-weight: bold;
+	color: #c0392b;
+}
+
 @media all and (max-width: 480px) {
 	#header {
 		padding-bottom: 80px;

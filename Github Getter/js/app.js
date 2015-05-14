@@ -74,7 +74,7 @@ $(document).ready(function() {
       }
   
       $('#results-container').append(resultHTML);
-      $('#resultCount').fadeIn('fast').html('('+resultCounter+') Repos showing for keyword '+'"'+query.toUpperCase()+'"'+'<br /><p>Scroll down to see the results!</p>'+'<p>And click on each repo name for more info!</p>');
+      $('#resultCount').fadeIn('fast').html('<a id="closer" href="#">close X</a> <br/><br/>('+resultCounter+') Repos showing for keyword '+'"'+query.toUpperCase()+'"'+'<br /><p>Scroll down to see the results!</p>'+'<p>And click on each repo name for more info!</p>');
       $('#search').val(' ');
     }
 
@@ -112,6 +112,10 @@ $(document).ready(function() {
   $('input#search').on('focus',function() {
     $('#resultCount').hide('fast');
   });
+
+  $('body').on('click', 'a#closer', function() {
+    $('#resultCount').hide('fast');
+  })
 
    // show and hide the langauge, followers, url, and description for each result
    $('body').on('click','span', function(e) {
