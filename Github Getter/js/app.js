@@ -40,6 +40,7 @@
 var query;
 var baseUrl = 'https://api.github.com/search/repositories?q=';
 var dataCache = {};
+var storedResults;
 
 $(document).ready(function() {
 
@@ -55,22 +56,19 @@ $(document).ready(function() {
 
       $('#results-container').html(' ');
       var resultHTML = '';
-      var language;
-      var followers;
-      var repo_url;
-      var description;
-      var resultCounter;
-      var avatar;
 
       for(var i = 0; i < data.items.length; i++) {
-        language = data.items[i].language;
-        repo_url = data.items[i].html_url;
-        description = data.items[i].description;
-        followers = data.items[i].watchers;
-        resultCounter = data.items.length;
-        avatar = data.items[i].owner.avatar_url;
+        var language = data.items[i].language;
+        var repo_url = data.items[i].html_url;
+        var description = data.items[i].description;
+        var followers = data.items[i].watchers;
+        var resultCounter = data.items.length;
+        var avatar = data.items[i].owner.avatar_url;
+        var name = data.items[i].name;
+        var login = data.items[i].owner.login;
+
         resultHTML += '<li class="listItem">'
-        resultHTML += '<span>Repository: <a href="#" class="resultLinks">'+data.items[i].name+'</a></span><br/>' + ' ' + '<span>Username: '+data.items[i].owner.login+'</span>'+'<img class="userAvatar" src="'+avatar+'">'
+        resultHTML += '<span>Repository: <a href="#" class="resultLinks">'+name+'</a></span><br/>' + ' ' + '<span>Username: '+login+'</span>'+'<img class="userAvatar" src="'+avatar+'">'
         resultHTML += '<p class="info"> <strong>Language:</strong> <span class="languageText">'+language+'</span><br/><strong>URL:</strong> <a href="'+repo_url+'" class="resultLinks">'+repo_url+' </a><br/>'+' '+'<strong>Description:</strong> <span class="redText">'+description+'</span><br/> <strong>Followers:</strong> <span class="twitterBlue">'+followers+'</span></p>'
         resultHTML += '</li>'
       }
@@ -78,6 +76,8 @@ $(document).ready(function() {
       $('#results-container').append(resultHTML);
       $('#resultCount').fadeIn('fast').html('<a id="closer" href="#">close X</a> <br/><br/>('+resultCounter+') Repos showing for keyword '+'"'+query.toUpperCase()+'"'+'<br /><p>Scroll down to see the results!</p>'+'<p>And click on each repo name for more info!</p>'+'<a href="#gohere" class="dynamicLink"><i class="fa fa-caret-down fa-3x"></i></a>');
       $('#search').val(' ');
+
+       addResultsToStorage();
     }
 
     // store search term 
@@ -99,6 +99,8 @@ $(document).ready(function() {
       console.log(data);
       render(data);
     });
+
+
 
   }//ends getResults 
   
@@ -130,8 +132,21 @@ $(document).ready(function() {
       var target = $('#results-container');
       $('html, body').animate({
           scrollTop: target.offset().top
-      }, 1000);
+      }, 800);
    });
+
+   //add session storage
+
+   if(localStorage.getItem('storedResults')) {
+      $('#results-container').html(localStorage.getItem('storedResults'));
+    }
+
+  function addResultsToStorage() {
+    storedResults = $('#results-container').html();
+    localStorage.setItem('storedResults', storedResults);
+  }
+
+
 
 
 });//ends document.ready
