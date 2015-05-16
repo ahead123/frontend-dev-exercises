@@ -76,7 +76,7 @@ $(document).ready(function() {
       }
   
       $('#results-container').append(resultHTML);
-      $('#resultCount').fadeIn('fast').html('<a id="closer" href="#">close X</a> <br/><br/>('+resultCounter+') Repos showing for keyword '+'"'+query.toUpperCase()+'"'+'<br /><p>Scroll down to see the results!</p>'+'<p>And click on each repo name for more info!</p>');
+      $('#resultCount').fadeIn('fast').html('<a id="closer" href="#">close X</a> <br/><br/>('+resultCounter+') Repos showing for keyword '+'"'+query.toUpperCase()+'"'+'<br /><p>Scroll down to see the results!</p>'+'<p>And click on each repo name for more info!</p>'+'<a href="#gohere" class="dynamicLink"><i class="fa fa-caret-down fa-3x"></i></a>');
       $('#search').val(' ');
     }
 
@@ -101,10 +101,10 @@ $(document).ready(function() {
     });
 
   }//ends getResults 
-
+  
+  // binds enter keypress event to getResults function
   $('#searchButton').click(getResults);
 
-  // binds enter keypress event to getResults function
   $('input#search').keypress(function (e) {
     if (e.which == 13) {
       getResults();
@@ -123,6 +123,14 @@ $(document).ready(function() {
    $('body').on('click','span', function(e) {
       e.preventDefault();
       $(this).parent('li').find('p.info').slideToggle('fast');
+   });
+
+   $('body').on('click', 'a.dynamicLink', function(e) {
+      e.preventDefault();
+      var target = $('#results-container');
+      $('html, body').animate({
+          scrollTop: target.offset().top
+      }, 1000);
    });
 
 

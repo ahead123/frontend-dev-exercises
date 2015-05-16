@@ -147,13 +147,17 @@ li.listItem:last-of-type {
 
 p#resultCount {
 	color: #c0392b;
-	font-weight: bold;
-	background: rgba(236, 240, 241, 0.7);
+  font-weight: bold;
+  background: rgba(236, 240, 241, 0.7);
   width: 30%;
   margin: 0 auto;
   margin-top: 30px;
   padding: 10px;
   display: none;
+}
+
+i.fa-caret-down {
+	color: #c0392b;
 }
 
 #closer {
